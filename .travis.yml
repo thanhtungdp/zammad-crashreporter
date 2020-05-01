@@ -19,11 +19,13 @@ cache:
   directories:
     - node_modules
 before_install:
+    - export VERSION=$(cat VERSION)
+    - export TRAVIS_TAG=release-$VERSION
     - npm update
 install:
     - npm install
 script:
     - npm test
-    - docker build -t zammad-crashreporter:$(cat VERSION) -t zammad-crashreporter:latest
-    - docker image save -o zammad-crashreporter-$(cat VERSION).tar zammad-crashreporter:$(cat VERSION)
-    - gzip < zammad-crashreporter-$(cat VERSION).tar > zammad-crashreporter-$(cat VERSION).tar.gz
+    - docker build -t exanion/zammad-crashreporter:$VERSION -t exanion/zammad-crashreporter:latest .
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push exanion/zammad-crashreporter
