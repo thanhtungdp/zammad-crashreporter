@@ -1,0 +1,30 @@
+{
+  "name": "zammad-crashreporter",
+  "version": "1.0.0",
+  "description": "Crash reporter server for Zammad Mobile App by Exanion",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exanion/zammad-crashreporter.git"
+  },
+  "author": "Exanion UG",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/exanion/zammad-crashreporter/issues"
+  },
+  "homepage": "https://github.com/exanion/zammad-crashreporter#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^25.5.3"
+  }
+}
