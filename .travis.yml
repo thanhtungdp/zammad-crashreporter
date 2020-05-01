@@ -1,0 +1,29 @@
+os: linux
+dist: xenial
+language: node_js
+notifications:
+    email:
+        recipients:
+            - kappelt.peter@gmail.com
+        on_success: always
+        on_failure: always
+services:
+    - docker
+node_js:
+    - '12'
+branches:
+  only:
+    - dev
+    - /^release-.*$/
+cache:
+  directories:
+    - node_modules
+before_install:
+    - npm update
+install:
+    - npm install
+script:
+    - npm test
+    - docker build -t zammad-crashreporter:$(cat VERSION) -t zammad-crashreporter:latest
+    - docker image save -o zammad-crashreporter-$(cat VERSION).tar zammad-crashreporter:$(cat VERSION)
+    - gzip < zammad-crashreporter-$(cat VERSION).tar > zammad-crashreporter-$(cat VERSION).tar.gz
