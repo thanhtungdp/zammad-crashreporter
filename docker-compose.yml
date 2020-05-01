@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  crashreporter:
+    ports:
+      - "${HTTP_PORT}:3001"
+    volumes:
+      - "${DB_FILE}:/usr/src/app/db.sqlite3"
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    image: exanion/zammad-crashreporter:latest
