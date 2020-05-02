@@ -30,8 +30,10 @@ fi
 git branch "release-$version"
 git checkout "release-$version"
 
+npm --no-git-tag-version version "$version"
 echo "$version" > VERSION
 git add VERSION
+git add package*.json
 
 git commit -m "Created release branch for version $version"
 
