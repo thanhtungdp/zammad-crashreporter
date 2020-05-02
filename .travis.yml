@@ -20,12 +20,12 @@ cache:
     - node_modules
 before_install:
     - export VERSION=$(cat VERSION)
-    - export TRAVIS_TAG=release-$VERSION
     - npm update
 install:
     - npm install
 script:
     - npm test
-    - docker build -t exanion/zammad-crashreporter:$VERSION -t exanion/zammad-crashreporter:latest .
+    - docker build -t exanion/zammad-crashreporter:$VERSION .
+    - '[[ ! "$(cat VERSION)" == "dev" ]] && docker tag exanion/zammad-crashreporter:$VERSION exanion/zammad-crashreporter:latest || true'
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker push exanion/zammad-crashreporter
