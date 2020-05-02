@@ -56,6 +56,7 @@ POST /report
 **Request parameters:**
 * **date:** Timestamp, when the app of the user has reported a crash
 * **fingerprint:** The fingerprint of the user's enddevice/ session, according to the internal specification
+* **deviceinfo:** Informaiton string about the used device (OS, OS version, ...)
 * **version:** Version string of the app used
 * **build:** Build code of the app used
 * **license:** License token the user is currently using - or null/ undefined if not

@@ -31,6 +31,7 @@ const init = (dbPath, callback = () => undefined) => {
 const addReport = ({
     date,
     fingerprint,
+    deviceinfo,
     version,
     build,
     license,
@@ -40,10 +41,11 @@ const addReport = ({
     stacktrace,
 }) => {
     db.run(
-        "INSERT INTO crashes (reportedDate, fingerprint, version, build, license, errorMsg, errorFile, errorLine, stacktrace) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO crashes (reportedDate, fingerprint, deviceinfo, version, build, license, errorMsg, errorFile, errorLine, stacktrace) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
             date,
             fingerprint,
+            deviceinfo,
             version,
             build,
             license,
