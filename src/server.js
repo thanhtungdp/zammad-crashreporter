@@ -44,6 +44,7 @@ app.post("/report", (req, res) => {
     let {
         date,
         fingerprint,
+        deviceinfo,
         version,
         build,
         license,
@@ -55,6 +56,7 @@ app.post("/report", (req, res) => {
 
     date = Date.parse(date);
     fingerprint = String(fingerprint);
+    deviceinfo = deviceinfo ? String(deviceinfo):null;
     version = version ? String(version):null;
     build = build ? String(build):null;
     license = license ? String(license):null;
@@ -74,6 +76,7 @@ app.post("/report", (req, res) => {
     db.addReport({
         date,
         fingerprint,
+        deviceinfo,
         version,
         build,
         license,

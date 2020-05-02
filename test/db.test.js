@@ -16,7 +16,7 @@ it("create empty db with schema", (done) => {
     const sqlite = require("sqlite3");
     const sql = new sqlite.Database(DB_FILE_PATH);
     sql.run(
-        "CREATE TABLE crashes (id INTEGER PRIMARY KEY AUTOINCREMENT, receivedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, reportedDate TIMESTAMP NOT NULL, fingerprint TEXT NOT NULL, version TEXT DEFAULT NULL, build TEXT DEFAULT NULL, license TEXT DEFAULT NULL, errorMsg TEXT DEFAULT NULL, errorFile TEXT DEFAULT NULL, errorLine INTEGER DEFAULT NULL, stacktrace TEXT DEFAULT NULL)",
+        "CREATE TABLE crashes (id INTEGER PRIMARY KEY AUTOINCREMENT, receivedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, reportedDate TIMESTAMP NOT NULL, fingerprint TEXT NOT NULL, deviceinfo TEXT DEFAULT NULL, version TEXT DEFAULT NULL, build TEXT DEFAULT NULL, license TEXT DEFAULT NULL, errorMsg TEXT DEFAULT NULL, errorFile TEXT DEFAULT NULL, errorLine INTEGER DEFAULT NULL, stacktrace TEXT DEFAULT NULL)",
         [],
         done
     );
@@ -31,6 +31,7 @@ it("test db add report", () => {
     db.addReport({
         date: "2020-04-20 13:00:00",
         fingerprint: "fingrprnt_abc",
+        deviceinfo: "devinfo",
         version: "0.0.1",
         build: "12345",
         license: null,
